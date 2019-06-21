@@ -7,18 +7,16 @@ class Alumno
    @nota4 = nota4
    end
 
-end
-
-
-def read_file(filename = 'notas.txt')
-   alumnos = []
-   data = []
-   File.open(filename, 'r') { |file| data = file.readlines }
-   data.each do |alumno|
+   def self.read_file(filename = 'notas.txt')
+     alumnos = []
+     data = []
+     File.open(filename,'r') { |file| data = file.readlines }
+     data.each do |alumno|
        alumnos << Alumno.new(*alumno.split(', '))
-   end
+     end
 
-   print alumnos
+     print alumnos
+   end
 end
-read_file('notas2.txt')
-print Alumno.read_file.map(&:chomp)
+
+print Alumno.read_file(&:chomp)
